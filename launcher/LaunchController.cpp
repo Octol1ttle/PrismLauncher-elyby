@@ -89,7 +89,7 @@ void LaunchController::decideAccount()
     if (accounts->count() <= 0 || !accounts->anyAccountIsValid()) {
         // Tell the user they need to log in at least one account in order to play.
         auto reply = CustomMessageBox::selectable(m_parentWidget, tr("No Accounts"),
-                                                  tr("In order to play Minecraft, you must have at least one Microsoft "
+                                                  tr("In order to play Minecraft, you must have at least one Ely.by or one Microsoft "
                                                      "account which owns Minecraft logged in. "
                                                      "Would you like to open the account manager to add an account now?"),
                                                   QMessageBox::Information, QMessageBox::Yes | QMessageBox::No)
@@ -347,9 +347,15 @@ void LaunchController::launchInstance()
         online_mode = "online";
 
         // Prepend Server Status
-        QStringList servers = { "login.microsoftonline.com", "session.minecraft.net", "textures.minecraft.net", "api.mojang.com" };
+        if (!m_session->wants_ely_patch) {
+            QStringList servers = { "login.microsoftonline.com", "session.minecraft.net", "textures.minecraft.net", "api.mojang.com" };
 
-        m_launcher->prependStep(makeShared<PrintServers>(m_launcher.get(), servers));
+            m_launcher->prependStep(makeShared<PrintServers>(m_launcher.get(), servers));
+        } else {
+            QStringList servers = { "account.ely.by", "ely.by" };
+
+            m_launcher->prependStep(makeShared<PrintServers>(m_launcher.get(), servers));
+        }
     } else {
         online_mode = m_demo ? "demo" : "offline";
     }

@@ -8,8 +8,8 @@ if(UNIX)
     endif()
 endif()
 
-set(Launcher_CommonName "PrismLauncher")
-set(Launcher_DisplayName "Prism Launcher")
+set(Launcher_CommonName "ElyPrismLauncher")
+set(Launcher_DisplayName "ElyPrismLauncher")
 
 set(Launcher_Name "${Launcher_CommonName}" PARENT_SCOPE)
 set(Launcher_DisplayName "${Launcher_DisplayName}" PARENT_SCOPE)
@@ -19,8 +19,8 @@ set(Launcher_Copyright_Mac "© 2022-2024 Prism Launcher Contributors, © 2021-20
 set(Launcher_Copyright "${Launcher_Copyright}" PARENT_SCOPE)
 set(Launcher_Domain "prismlauncher.org" PARENT_SCOPE)
 set(Launcher_UserAgent "${Launcher_CommonName}/${Launcher_VERSION_NAME}" PARENT_SCOPE)
-set(Launcher_ConfigFile "prismlauncher.cfg" PARENT_SCOPE)
-set(Launcher_Git "https://github.com/PrismLauncher/PrismLauncher" PARENT_SCOPE)
+set(Launcher_ConfigFile "elyprismlauncher.cfg" PARENT_SCOPE)
+set(Launcher_Git "https://github.com/Octol1ttle/ElyPrismLauncher" PARENT_SCOPE)
 set(Launcher_DesktopFileName "org.prismlauncher.PrismLauncher.desktop" PARENT_SCOPE)
 set(Launcher_SVGFileName "org.prismlauncher.PrismLauncher.svg" PARENT_SCOPE)
 

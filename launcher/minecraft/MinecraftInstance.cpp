@@ -94,6 +94,7 @@
 
 #ifdef Q_OS_LINUX
 #include "MangoHud.h"
+#include "minecraft/launch/ApplyLibraryOverrides.h"
 #endif
 
 #define IBUS "@im=ibus"
@@ -1107,6 +1108,7 @@ shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPt
         if (!session->demo) {
             process->appendStep(makeShared<ClaimAccount>(pptr, session));
         }
+        process->appendStep(makeShared<ApplyLibraryOverrides>(pptr, session));
         for (auto t : createUpdateTask()) {
             process->appendStep(makeShared<TaskStepWrapper>(pptr, t));
         }

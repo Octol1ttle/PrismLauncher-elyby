@@ -505,6 +505,10 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
             migrated = handleDataMigration(
                 dataPath, FS::PathCombine(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "../../multimc"), "MultiMC",
                 "multimc.cfg");
+        if (!migrated)
+            migrated = handleDataMigration(
+                dataPath, FS::PathCombine(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "../../PrismLauncher"), "Prism Launcher",
+                "prismlauncher.cfg");
     }
 
     {
@@ -1126,7 +1130,7 @@ bool Application::createSetupWizard()
         }
 
         if (login) {
-            m_setupWizard->addPage(new LoginWizardPage(m_setupWizard));
+            //m_setupWizard->addPage(new LoginWizardPage(m_setupWizard));
         }
         connect(m_setupWizard, &QDialog::finished, this, &Application::setupWizardFinished);
         m_setupWizard->show();
@@ -1730,6 +1734,16 @@ QString Application::getMSAClientID()
     }
 
     return BuildConfig.MSA_CLIENT_ID;
+}
+
+QString Application::getElyClientID()
+{
+    QString clientIDOverride = m_settings->get("ElyClientIDOverride").toString();
+    if (!clientIDOverride.isEmpty()) {
+        return clientIDOverride;
+    }
+
+    return BuildConfig.ELY_CLIENT_ID;
 }
 
 QString Application::getFlameAPIKey()
