@@ -50,7 +50,6 @@ jobs:
           mv ElyPrismLauncher-Linux-Qt5-Portable*/ElyPrismLauncher-portable.tar.gz ElyPrismLauncher-Linux-Qt5-Portable-${{ env.VERSION }}.tar.gz
           mv ElyPrismLauncher-*.AppImage/ElyPrismLauncher-*.AppImage ElyPrismLauncher-Linux-x86_64.AppImage
           mv ElyPrismLauncher-*.AppImage.zsync/ElyPrismLauncher-*.AppImage.zsync ElyPrismLauncher-Linux-x86_64.AppImage.zsync
-          mv ElyPrismLauncher-x86_64/ElyPrismLauncher.flatpak ElyPrismLauncher-Linux-x86_64.flatpak
           mv ElyPrismLauncher-macOS-Legacy*/ElyPrismLauncher.zip ElyPrismLauncher-macOS-Legacy-${{ env.VERSION }}.zip
           mv ElyPrismLauncher-macOS*/ElyPrismLauncher.zip ElyPrismLauncher-macOS-${{ env.VERSION }}.zip
 
