@@ -67,10 +67,10 @@ MinecraftAccountPtr MinecraftAccount::loadFromJsonV3(const QJsonObject& json)
     return nullptr;
 }
 
-MinecraftAccountPtr MinecraftAccount::createBlankMSA()
+MinecraftAccountPtr MinecraftAccount::createBlank(const AccountType type)
 {
     MinecraftAccountPtr account(new MinecraftAccount());
-    account->data.type = AccountType::MSA;
+    account->data.type = type;
     return account;
 }
 
@@ -167,7 +167,7 @@ void MinecraftAccount::authFailed(QString reason)
             // NOTE: this doesn't do much. There was an error of some sort.
         } break;
         case AccountTaskState::STATE_FAILED_HARD: {
-            if (accountType() == AccountType::MSA) {
+            if (accountType() == AccountType::MSA || accountType() == AccountType::Ely) {
                 data.msaToken.token = QString();
                 data.msaToken.refresh_token = QString();
                 data.msaToken.validity = Validity::None;
@@ -260,6 +260,7 @@ void MinecraftAccount::fillSession(AuthSessionPtr session)
     } else {
         session->session = "-";
     }
+    session->wants_ely_patch = session->wants_online && accountType() == AccountType::Ely;
 }
 
 void MinecraftAccount::decrementUses()

@@ -70,6 +70,7 @@
 #include "minecraft/launch/ReconstructAssets.h"
 #include "minecraft/launch/ScanModFolders.h"
 #include "minecraft/launch/VerifyJavaInstall.h"
+#include "minecraft/launch/ApplyLibraryOverrides.h"
 
 #include "java/JavaUtils.h"
 
@@ -1107,6 +1108,7 @@ shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPt
         if (!session->demo) {
             process->appendStep(makeShared<ClaimAccount>(pptr, session));
         }
+        process->appendStep(makeShared<ApplyLibraryOverrides>(pptr, session));
         for (auto t : createUpdateTask()) {
             process->appendStep(makeShared<TaskStepWrapper>(pptr, t));
         }
