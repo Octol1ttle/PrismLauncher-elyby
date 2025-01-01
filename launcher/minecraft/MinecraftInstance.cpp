@@ -70,6 +70,7 @@
 #include "minecraft/launch/ReconstructAssets.h"
 #include "minecraft/launch/ScanModFolders.h"
 #include "minecraft/launch/VerifyJavaInstall.h"
+#include "minecraft/launch/ApplyLibraryOverrides.h"
 
 #include "java/JavaUtils.h"
 
@@ -94,7 +95,6 @@
 
 #ifdef Q_OS_LINUX
 #include "MangoHud.h"
-#include "minecraft/launch/ApplyLibraryOverrides.h"
 #endif
 
 #define IBUS "@im=ibus"

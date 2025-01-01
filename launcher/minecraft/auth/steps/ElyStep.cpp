@@ -65,7 +65,9 @@ ElyStep::ElyStep(AccountData* data, bool silent) : AuthStep(data), m_silent(sile
     oauth2.setScope("account_info offline_access minecraft_server_session");
     oauth2.setClientIdentifier(m_clientId);
     oauth2.setNetworkAccessManager(APPLICATION->network().get());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
     oauth2.setPkceMethod(QOAuth2AuthorizationCodeFlow::PkceMethod::None);
+#endif
 
     connect(&oauth2, &QOAuth2AuthorizationCodeFlow::granted, this, [this] {
         m_data->msaClientID = oauth2.clientIdentifier();

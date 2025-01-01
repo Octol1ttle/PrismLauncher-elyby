@@ -12,7 +12,9 @@
 </p>
 
 ## Why this fork?
+
 There are already quite a few forks out in the wild that add Ely.by support and/or disable the Microsoft account requirement. This fork goes beyond simply adding a login-password prompt and authlib-injector download.
+
 - Modern and secure login: ElyPrismLauncher uses OAuth2 to log you in. This means that your credentials are never transferred to the launcher. Instead, you log into your account on the official Ely.by page in the browser, and Ely.by gives the launcher a token to access your account with limited privileges.
 - Skins support on servers: All other forks rely exclusively on authlib-injector to patch Minecraft to support Ely.by. But authlib-injector can't provide skins on servers that don't have a special skins plugin installed. ElyPrismLauncher uses Ely.by's official Authlib patches, allowing you to see skins anywhere
 

@@ -507,8 +507,8 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
                 "multimc.cfg");
         if (!migrated)
             migrated = handleDataMigration(
-                dataPath, FS::PathCombine(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "../../PrismLauncher"), "Prism Launcher",
-                "prismlauncher.cfg");
+                dataPath, FS::PathCombine(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "../../PrismLauncher"),
+                "Prism Launcher", "prismlauncher.cfg");
     }
 
     {
@@ -1130,7 +1130,7 @@ bool Application::createSetupWizard()
         }
 
         if (login) {
-            //m_setupWizard->addPage(new LoginWizardPage(m_setupWizard));
+            // m_setupWizard->addPage(new LoginWizardPage(m_setupWizard));
         }
         connect(m_setupWizard, &QDialog::finished, this, &Application::setupWizardFinished);
         m_setupWizard->show();
