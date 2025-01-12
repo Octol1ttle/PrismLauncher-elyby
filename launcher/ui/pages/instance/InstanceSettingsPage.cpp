@@ -60,6 +60,7 @@
 #include "FileSystem.h"
 #include "java/JavaInstallList.h"
 #include "java/JavaUtils.h"
+#include "ui/pages/global/MinecraftPage.h"
 
 InstanceSettingsPage::InstanceSettingsPage(BaseInstance* inst, QWidget* parent)
     : QWidget(parent), ui(new Ui::InstanceSettingsPage), m_instance(inst)
@@ -92,6 +93,10 @@ InstanceSettingsPage::InstanceSettingsPage(BaseInstance* inst, QWidget* parent)
         ui->serverJoinAddressButton->setChecked(true);
         ui->serverJoinAddress->setEnabled(true);
         ui->serverJoinAddressButton->setStyleSheet("QRadioButton::indicator { width: 0px; height: 0px; }");
+    }
+
+    for (auto preferenceType : MinecraftPage::ElyPreferenceTypes) {
+        ui->elyPreferenceComboBox->addItem(preferenceType);
     }
 
     loadSettings();
@@ -303,6 +308,14 @@ void InstanceSettingsPage::applySettings()
         m_settings->reset("OnlineFixes");
     }
 
+    bool overrideElySettings = ui->elySettingsGroupBox->isChecked();
+    m_settings->set("OverrideElySettings", overrideElySettings);
+    if (overrideElySettings) {
+        m_settings->set("ElyPatchPreference", ui->elyPreferenceComboBox->currentIndex());
+    } else {
+        m_settings->reset("ElyPatchPreference");
+    }
+
     // FIXME: This should probably be called by a signal instead
     m_instance->updateRuntimeContext();
 }
@@ -435,6 +448,9 @@ void InstanceSettingsPage::loadSettings()
 
     ui->legacySettingsGroupBox->setChecked(m_settings->get("OverrideLegacySettings").toBool());
     ui->onlineFixes->setChecked(m_settings->get("OnlineFixes").toBool());
+
+    ui->elySettingsGroupBox->setChecked(m_settings->get("OverrideElySettings").toBool());
+    ui->elyPreferenceComboBox->setCurrentIndex(m_settings->get("ElyPatchPreference").toInt());
 }
 
 void InstanceSettingsPage::on_javaDownloadBtn_clicked()

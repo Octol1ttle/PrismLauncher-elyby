@@ -233,7 +233,7 @@ bool MinecraftAccount::shouldRefresh() const
     return false;
 }
 
-void MinecraftAccount::fillSession(AuthSessionPtr session)
+void MinecraftAccount::fillSession(AuthSessionPtr session, int elyPatchPreference)
 {
     if (ownsMinecraft() && !hasProfile()) {
         session->status = AuthSession::RequiresProfileSetup;
@@ -260,7 +260,20 @@ void MinecraftAccount::fillSession(AuthSessionPtr session)
     } else {
         session->session = "-";
     }
-    session->wants_ely_patch = session->wants_online && accountType() == AccountType::Ely;
+    switch (elyPatchPreference) {
+        case 0: { // Always
+            session->wants_ely_patch = session->wants_online;
+        } break;
+        case 1: { // When using Ely and Offline accounts
+            session->wants_ely_patch = session->wants_online && (data.type == AccountType::Ely || data.type == AccountType::Offline);
+        } break;
+        case 2: { // When using Ely accounts
+            session->wants_ely_patch = session->wants_online && data.type == AccountType::Ely;
+        } break;
+        default: { // Never/unknown
+            session->wants_ely_patch = false;
+        }
+    }
 }
 
 void MinecraftAccount::decrementUses()

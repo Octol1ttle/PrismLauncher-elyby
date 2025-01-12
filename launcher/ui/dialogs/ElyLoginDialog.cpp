@@ -68,6 +68,8 @@ ElyLoginDialog::ElyLoginDialog(QWidget* parent) : QDialog(parent), ui(new Ui::El
             }
         }
     });
+
+    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 }
 
 int ElyLoginDialog::exec()
@@ -83,7 +85,7 @@ int ElyLoginDialog::exec()
     connect(m_authflow_task.get(), &AuthFlow::authorizeWithBrowserWithExtra, this, &ElyLoginDialog::authorizeWithBrowserWithExtra);
     connect(ui->buttonBox->button(QDialogButtonBox::Cancel), &QPushButton::clicked, m_authflow_task.get(), &Task::abort);
 
-    m_devicecode_task.reset(new AuthFlow(m_account->accountData(), AuthFlow::Action::DeviceCode, this));
+    m_devicecode_task.reset(new AuthFlow(m_account->accountData(), AuthFlow::Action::DeviceCode));
     connect(m_devicecode_task.get(), &Task::failed, this, &ElyLoginDialog::onTaskFailed);
     connect(m_devicecode_task.get(), &Task::succeeded, this, &QDialog::accept);
     connect(m_devicecode_task.get(), &Task::aborted, this, &ElyLoginDialog::reject);

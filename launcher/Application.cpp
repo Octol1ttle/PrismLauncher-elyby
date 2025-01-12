@@ -560,7 +560,7 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
     // Initialize application settings
     {
         // Provide a fallback for migration from PolyMC
-        m_settings.reset(new INISettingsObject({ BuildConfig.LAUNCHER_CONFIGFILE, "polymc.cfg", "multimc.cfg" }, this));
+        m_settings.reset(new INISettingsObject({ BuildConfig.LAUNCHER_CONFIGFILE, "prismlauncher.cfg", "polymc.cfg", "multimc.cfg" }, this));
 
         // Theming
         m_settings->registerSetting("IconTheme", QString());
@@ -661,6 +661,9 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
 
         // Legacy settings
         m_settings->registerSetting("OnlineFixes", false);
+
+        // Ely settings
+        m_settings->registerSetting("ElyPatchPreference", 1);
 
         // Native library workarounds
         m_settings->registerSetting("UseNativeOpenAL", false);
@@ -767,6 +770,8 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
 
         // Custom Microsoft Authentication Client ID
         m_settings->registerSetting("MSAClientIDOverride", "");
+        // Custom Ely.by Accounts OAuth ID
+        m_settings->registerSetting("ElyClientIDOverride", "");
 
         // Custom Flame API Key
         {

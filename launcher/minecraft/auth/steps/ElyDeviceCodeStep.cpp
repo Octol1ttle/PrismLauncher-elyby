@@ -71,7 +71,7 @@ void ElyDeviceCodeStep::perform()
     m_task->setAskRetry(false);
     m_task->addNetAction(m_request);
 
-    connect(m_task.get(), &Task::finished, this, &ElyDeviceCodeStep::deviceAutorizationFinished);
+    connect(m_task.get(), &Task::finished, this, &ElyDeviceCodeStep::deviceAuthorizationFinished);
 
     m_task->start();
 }

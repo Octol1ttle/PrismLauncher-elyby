@@ -55,13 +55,13 @@ void ApplyLibraryOverrides::onLibraryOverrideDownloadFinished()
             continue;
         }
 
-        library->setHint("always-stale");
-        if (isAuthlib && !m_session->wants_ely_patch) {
+        auto versionRef = artifactRef.toObject()[library->version()];
+        if (!versionRef.isObject()) {
             continue;
         }
 
-        auto versionRef = artifactRef.toObject()[library->version()];
-        if (!versionRef.isObject()) {
+        library->setHint("always-stale");
+        if (isAuthlib && !m_session->wants_ely_patch) {
             continue;
         }
 
@@ -71,8 +71,7 @@ void ApplyLibraryOverrides::onLibraryOverrideDownloadFinished()
         newDownloadInfo->sha1 = override["sha1"].toString();
         newDownloadInfo->size = override["size"].toInt();
 
-        auto newLibraryInfo = std::make_shared<MojangLibraryDownloadInfo>();
-        newLibraryInfo->artifact = newDownloadInfo;
+        auto newLibraryInfo = std::make_shared<MojangLibraryDownloadInfo>(newDownloadInfo);
 
         library->setMojangDownloadInfo(newLibraryInfo);
 
