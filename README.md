@@ -20,8 +20,8 @@ There are already quite a few forks out in the wild that add Ely.by support and/
 
 ## Installation
 
-- All downloads can be found [here](https://github.com/Octol1ttle/ElyPrismLauncher/releases/latest).
-- Last build status can be found in the [GitHub Actions](https://github.com/Octol1ttle/ElyPrismLauncher/actions).
+- All downloads can be found [here](https://github.com/ElyPrismLauncher/ElyPrismLauncher/releases/latest).
+- Last build status can be found in the [GitHub Actions](https://github.com/ElyPrismLauncher/ElyPrismLauncher/actions).
 
 ## Community & Support
 
@@ -57,7 +57,7 @@ Note that if you build this software without removing the provided API keys in [
 
 If you do not agree with these terms and conditions, then remove the associated API keys from the [CMakeLists.txt](CMakeLists.txt) file by setting them to an empty string (`""`).
 
-## License [![https://github.com/Octol1ttle/ElyPrismLauncher/blob/develop/LICENSE](https://img.shields.io/github/license/Octol1ttle/ElyPrismLauncher?label=License&logo=gnu&color=C4282D)](LICENSE)
+## License [![https://github.com/ElyPrismLauncher/ElyPrismLauncher/blob/develop/LICENSE](https://img.shields.io/github/license/ElyPrismLauncher/ElyPrismLauncher?label=License&logo=gnu&color=C4282D)](LICENSE)
 
 All launcher code is available under the GPL-3.0-only license.
 

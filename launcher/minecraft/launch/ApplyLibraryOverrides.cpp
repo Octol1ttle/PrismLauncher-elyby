@@ -16,7 +16,7 @@ void ApplyLibraryOverrides::executeTask()
 
 void ApplyLibraryOverrides::downloadLibraryOverrideList()
 {
-    const auto libraryOverrideListUrl = QUrl("https://raw.githubusercontent.com/Octol1ttle/ElyPrismLauncher/refs/heads/develop/epl_metadata.json");
+    const auto libraryOverrideListUrl = QUrl("https://raw.githubusercontent.com/ElyPrismLauncher/ElyPrismLauncher/refs/heads/develop/epl_metadata.json");
     m_request = Net::Download::makeByteArray(libraryOverrideListUrl, m_response);
 
     m_task.reset(new NetJob("Fetch EPL metadata", APPLICATION->network()));
