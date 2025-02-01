@@ -580,16 +580,6 @@ void AccountList::setListFilePath(QString path, bool autosave)
     m_autosave = autosave;
 }
 
-bool AccountList::anyAccountIsValid()
-{
-    for (auto account : m_accounts) {
-        if (account->ownsMinecraft()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 void AccountList::fillQueue()
 {
     if (m_defaultAccount && m_defaultAccount->shouldRefresh()) {

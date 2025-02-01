@@ -1137,7 +1137,7 @@ bool Application::createSetupWizard()
         }
 
         if (login) {
-            // m_setupWizard->addPage(new LoginWizardPage(m_setupWizard));
+            m_setupWizard->addPage(new LoginWizardPage(m_setupWizard));
         }
         connect(m_setupWizard, &QDialog::finished, this, &Application::setupWizardFinished);
         m_setupWizard->show();
